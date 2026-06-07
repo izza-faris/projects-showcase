@@ -46,7 +46,7 @@ A modern and responsive restaurant website designed to showcase a restaurant's m
 
 #### 🔗 Live Demo
 
-https://izza-faris.github.io/projects-showcase/The-Heritage-Plate-%20Resurent%20website/
+https://izza-faris.github.io/projects-showcase/resturent%20website/
 
 ---
 
