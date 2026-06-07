@@ -2,7 +2,7 @@
 
 Welcome to my **Projects Showcase** repository! This repository contains a collection of web development projects that I have built to improve and demonstrate my skills in **HTML, CSS, JavaScript, Bootstrap, and Responsive Web Design**.
 
-## 📂 Projects Included
+## 📂 Projects Included 
 
 ### 1️⃣ Calculator App
 
@@ -47,7 +47,6 @@ A modern and responsive restaurant website designed to showcase a restaurant's m
 #### 🔗 Live Demo
 
 https://izza-faris.github.io/projects-showcase/resturent%20website/
-
 ---
 
 ### 3️⃣ Certifications
