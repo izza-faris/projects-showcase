@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Heritage Plate - Billing</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="site-title">
+      <span id="restaurant-name">The Heritage Plate</span>
+      <span class="title-emoji" aria-hidden="true"><span>🍴</span><span>🥣</span></span>
+    </h1>
+    <nav class="tabs">
+      <button type="button" class="tab active" data-view="billing">Billing</button>
+      <button type="button" class="tab" data-view="admin">Admin</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Billing View -->
+    <section id="billing-view" class="view active view-enter">
+      <div class="billing-layout">
+        <div class="menu-section">
+          <h2>Menu</h2>
+          <div id="menu-grid" class="menu-grid"></div>
+        </div>
+        <aside id="cart-panel" class="cart-panel">
+          <h2>Cart</h2>
+          <div id="cart-items" class="cart-items"></div>
+          <div class="cart-footer">
+            <div class="cart-total">
+              <span>Total:</span>
+              <span id="cart-total">Rs. 0.00</span>
+            </div>
+            <div class="cart-actions">
+              <button type="button" id="btn-clear-cart" class="btn btn-secondary">Clear Cart</button>
+              <button type="button" id="btn-print-bill" class="btn btn-secondary">Print Bill</button>
+              <button type="button" id="btn-pay-now" class="btn btn-primary">Pay Now</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <div id="mobile-cart-bar" class="mobile-cart-bar" hidden>
+        <div class="mobile-cart-info">
+          <span id="mobile-cart-count">0 items</span>
+          <span id="mobile-cart-total">Rs. 0.00</span>
+        </div>
+        <button type="button" id="btn-mobile-cart-scroll">View Cart</button>
+      </div>
+    </section>
+
+    <!-- Admin View -->
+    <section id="admin-view" class="view">
+      <div class="admin-tabs">
+        <button type="button" class="admin-tab active" data-admin="menu">Manage Menu</button>
+        <button type="button" class="admin-tab" data-admin="payment">Payment Settings</button>
+        <button type="button" class="admin-tab" data-admin="reports">Sales Report</button>
+      </div>
+
+      <!-- Manage Menu -->
+      <div id="admin-menu" class="admin-panel active">
+        <h2>Manage Menu</h2>
+        <form id="menu-form" class="menu-form">
+          <input type="hidden" id="menu-item-id">
+          <div class="form-row">
+            <label for="menu-name">Name</label>
+            <input type="text" id="menu-name" required placeholder="Item name">
+          </div>
+          <div class="form-row">
+            <label for="menu-price">Price (LKR)</label>
+            <input type="number" id="menu-price" required min="0" step="0.01" placeholder="0.00">
+          </div>
+          <div class="form-row">
+            <label for="menu-image">Image path</label>
+            <input type="text" id="menu-image" placeholder="images/idly.jpg">
+          </div>
+          <div class="form-row checkbox-row">
+            <label>
+              <input type="checkbox" id="menu-active" checked>
+              Active (show on menu)
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="menu-submit-btn">Add Item</button>
+            <button type="button" class="btn btn-secondary" id="menu-cancel-btn" hidden>Cancel</button>
+          </div>
+        </form>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="menu-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="menu-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Payment Settings -->
+      <div id="admin-payment" class="admin-panel">
+        <h2>Payment Settings</h2>
+        <form id="payment-form" class="menu-form">
+          <div class="form-row">
+            <label for="setting-restaurant-name">Restaurant Name</label>
+            <input type="text" id="setting-restaurant-name" required placeholder="The Heritage Plate">
+          </div>
+          <div class="form-row">
+            <label for="setting-payment-id">Payment ID</label>
+            <input type="text" id="setting-payment-id" required placeholder="eZ Cash / bank account / merchant ID">
+          </div>
+          <div class="form-row">
+            <label for="setting-payment-note">Payment note</label>
+            <input type="text" id="setting-payment-note" placeholder="Scan to pay">
+          </div>
+          <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
+      </div>
+
+      <!-- Sales Report -->
+      <div id="admin-reports" class="admin-panel">
+        <h2>Monthly Sales Report</h2>
+        <div class="report-filters">
+          <label for="report-month">Month</label>
+          <input type="month" id="report-month">
+          <button type="button" id="btn-generate-report" class="btn btn-primary">Generate Report</button>
+        </div>
+        <div id="report-summary" class="report-summary"></div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="report-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Items</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="report-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <details class="image-credits">
+        <summary>Menu image credits (open source)</summary>
+        <ul>
+          <li>Idly — <a href="https://www.flickr.com/photos/2068576214/" target="_blank" rel="noopener">Flickr</a> (CC BY-SA)</li>
+          <li>Poori — <a href="https://www.flickr.com/photos/6098827717/" target="_blank" rel="noopener">Flickr</a> (CC BY)</li>
+          <li>Dhosa — <a href="https://www.flickr.com/photos/3313117961/" target="_blank" rel="noopener">Flickr</a> (CC BY)</li>
+          <li>Coffee — <a href="https://commons.wikimedia.org/wiki/File:A_small_cup_of_coffee.JPG" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY-SA)</li>
+          <li>Wada — <a href="https://www.flickr.com/photos/12477835763/" target="_blank" rel="noopener">Flickr</a> (CC BY-SA)</li>
+          <li>Phalampoori — <a href="https://www.flickr.com/photos/4779952309/" target="_blank" rel="noopener">Flickr</a> (CC BY-SA)</li>
+        </ul>
+        <p class="credits-note">Images sourced via <a href="https://openverse.org/" target="_blank" rel="noopener">Openverse</a> and Wikimedia Commons.</p>
+      </details>
+    </section>
+  </main>
+
+  <!-- Pay Now Modal -->
+  <div id="pay-modal" class="modal" hidden>
+    <div class="modal-content">
+      <button type="button" class="modal-close" id="pay-modal-close">&times;</button>
+      <h2>Pay Now</h2>
+      <div id="pay-modal-summary" class="pay-summary"></div>
+      <div id="qr-code" class="qr-code"></div>
+      <p id="pay-modal-note" class="pay-note"></p>
+      <div class="modal-actions">
+        <button type="button" id="btn-confirm-payment" class="btn btn-primary">Confirm Payment</button>
+        <button type="button" id="btn-cancel-payment" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Print Bill (hidden on screen) -->
+  <div id="print-bill" class="print-bill" aria-hidden="true">
+    <h2 id="print-restaurant-name"></h2>
+    <p id="print-date"></p>
+    <table id="print-items">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="print-items-body"></tbody>
+    </table>
+    <p class="print-total">Total: <span id="print-total"></span></p>
+    <p class="print-thanks">Thank you for dining with us!</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
